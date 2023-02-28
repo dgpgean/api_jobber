@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 use App\Http\Controllers\Api\{DepartmentController};
 
-Route::get('/departments', [DepartmentController::class, 'index']);
+//Route::get('/departments', [DepartmentController::class, 'index']);
+
+Route::resource('departments', DepartmentController::class);
 
 Route::get('/', function () {
     return view('welcome');

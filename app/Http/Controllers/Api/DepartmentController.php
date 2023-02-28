@@ -22,7 +22,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        return $this->department->all();
+        $allDepartments = $this->department->paginate(10);
+
+        return response()->json($allDepartments);
     }
 
     /**
@@ -39,12 +41,12 @@ class DepartmentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Department $department)
     {
-        //
+        return $department;
     }
 
     /**
