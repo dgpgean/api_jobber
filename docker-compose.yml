@@ -1,0 +1,35 @@
+version: "3.7"
+
+services:
+    # image project
+    app:
+        container_name: app-laravel-jobber
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: especializati/laravel9-app
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        networks: 
+            - laravel-9
+    
+    # nginx
+    nginx:
+        container_name: app-nginx-jobber
+        image: nginx:alpine
+        restart: unless-stopped
+        ports: 
+            - "8181:80"
+        volumes: 
+            - ./:/var/www
+            - ./docker/nginx/:/etc/nginx/conf.d/
+        networks: 
+            - laravel-9
+
+  
+
+
+networks: 
+    laravel-9:
