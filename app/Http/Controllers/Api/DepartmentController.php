@@ -3,10 +3,18 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
+    private $department;
+
+    public function __construct(Department $department)
+    {   
+        $this->department = $department;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        return ['name' => 'Diego'];
+        return $this->department->all();
     }
 
     /**
